@@ -1,0 +1,67 @@
+<div th:fragment="table-borrowing">
+    <div class="container">
+        <!--    <h1>Электронная Регистратура Библиотеки</h1>-->
+
+        <h2>Книги</h2>
+        <label for="book-filter">Книга:</label>
+        <input type="text" id="book-filter" oninput="filterTable()">
+
+        <label for="status-filter">Статус:</label>
+        <input type="text" id="status-filter" oninput="filterTable()">
+        <button onclick="back()"> назад </button>
+        <!-- <button>поиск</button> -->
+
+        <table>
+            <thead>
+            <tr>
+<!--                <th>пользователь</th>-->
+                <th>Книга</th>
+                <th>Дата выдачи</th>
+                <th>Дата возврата</th>
+                <th>Статус</th>
+            </tr>
+            </thead>
+            <tbody id="user-list">
+            <tr>
+                <td>Война и мир</td>
+                <td>12.12.2000</td>
+                <td></td>
+                <td>активен</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function filterTable() {
+            const nameInput = document.getElementById('book-filter').value.toLowerCase();
+            const genreInput = document.getElementById('status-filter').value.toLowerCase();
+            const userList = document.getElementById('user-list'); // Получаем тело таблицы
+            const rows = userList.getElementsByTagName('tr'); // Получаем все строки таблицы
+
+            // Проходим по всем строкам таблицы и скрываем/показываем их в зависимости от введенного текста
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td'); // Получаем ячейки текущей строки
+
+                const bookName = cells[0].textContent.toLowerCase(); // Имя
+                const status = cells[3].textContent.toLowerCase(); // status
+
+                // Проверяем, соответствует ли строка условиям фильтрации
+                const nameMatch = bookName.indexOf(nameInput) > -1;
+                const surnameMatch = status.indexOf(genreInput) > -1;
+
+                // Показываем строку, если она соответствует обоим критериям
+                if (nameMatch && surnameMatch) {
+                    rows[i].style.display = ""; // Показываем строку
+                } else {
+                    rows[i].style.display = "none"; // Скрываем строку
+                }
+            }
+        }
+         function back(){
+            console.log( window.location.href.slice(0,window.location.href.indexOf("user-detail")))
+            window.location.href=  window.location.href.slice(0,window.location.href.indexOf("user-detail"))
+         }
+
+    </script>
+</div>

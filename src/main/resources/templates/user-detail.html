@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css">
+<link rel="stylesheet" th:href="@{/css/table.css}" href="../static/css/table.css">
+<body>
+<!--<p>Электронная почта: <span th:text="${Id}"></span></p>-->
+    <header>
+        <h1 >Книги пользователя <span th:text="${Id}"></span> </h1>
+    </header>
+
+    <table th:insert="blocks/table-borrowing :: table-borrowing"></table>
+
+    <footer th:insert="blocks/footer :: footer">
+
+    </footer>
+</body>
+</html>

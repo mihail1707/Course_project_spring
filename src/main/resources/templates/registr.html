@@ -1,0 +1,40 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css">
+</head>
+    <body>
+    <header>
+        <h1 >Регистрация</h1>
+    </header>
+    <nav th:insert="blocks/nav-menu :: nav"></nav>
+    <main>
+        <h2>Заполните форму для регистрации:</h2>
+        <form onsubmit="">
+            <label for="name">ФИО:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="dob">Дата рождения:</label>
+            <input type="date" id="dob" name="dob" required><br><br>
+
+            <label for="gender">Пол:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Мужской</option>
+                <option value="female">Женский</option>
+            </select><br><br>
+
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <input type="submit" value="Зарегистрироваться">
+        </form>
+
+    </main>
+    <footer th:insert="blocks/footer :: footer">
+    </footer>
+    </body>
+</html>

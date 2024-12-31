@@ -1,0 +1,62 @@
+<div th:fragment="table-books">
+    <div class="container">
+        <!--    <h1>Электронная Регистратура Библиотеки</h1>-->
+
+        <h2>Книги</h2>
+        <label for="name-filter">Название:</label>
+        <input type="text" id="name-filter" oninput="filterTable()">
+
+        <label for="genre-filter">Жанр:</label>
+        <input type="text" id="genre-filter" oninput="filterTable()">
+        <!-- <button>поиск</button> -->
+
+        <table>
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Год публикации</th>
+                <th>Автор</th>
+                <th>Доступное количество</th>
+                <th>Жанр</th>
+            </tr>
+            </thead>
+            <tbody id="user-list">
+                <tr>
+                    <td>Война и мир</td>
+                    <td>1900</td>
+                    <td>Толстой</td>
+                    <td>10</td>
+                    <td>роман</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function filterTable() {
+        const nameInput = document.getElementById('name-filter').value.toLowerCase();
+        const genreInput = document.getElementById('genre-filter').value.toLowerCase();
+        const userList = document.getElementById('user-list'); // Получаем тело таблицы
+        const rows = userList.getElementsByTagName('tr'); // Получаем все строки таблицы
+
+        // Проходим по всем строкам таблицы и скрываем/показываем их в зависимости от введенного текста
+        for (let i = 0; i < rows.length; i++) {
+            const cells = rows[i].getElementsByTagName('td'); // Получаем ячейки текущей строки
+
+            const userName = cells[0].textContent.toLowerCase(); // Имя
+            const userSurname = cells[4].textContent.toLowerCase(); // жанр
+
+            // Проверяем, соответствует ли строка условиям фильтрации
+            const nameMatch = userName.indexOf(nameInput) > -1;
+            const surnameMatch = userSurname.indexOf(genreInput) > -1;
+
+            // Показываем строку, если она соответствует обоим критериям
+            if (nameMatch && surnameMatch) {
+                rows[i].style.display = ""; // Показываем строку
+            } else {
+                rows[i].style.display = "none"; // Скрываем строку
+            }
+        }
+    }
+    </script>
+</div>

@@ -1,0 +1,37 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/table.css}" href="../static/css/table.css">
+    <script>
+        function redirectTo(Id) {
+            // Перенаправление на страницу с деталями пользователя с передачей email в URL
+            console.log(Id)
+            window.location.href = '/user-detail?Id=' + encodeURIComponent(Id);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const rows = document.querySelectorAll('#user-list tr');
+            rows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const IdlCell = this.querySelector('td:nth-child(1)'); // Третья ячейка (email)
+                    const Id = IdlCell.textContent;
+                    redirectTo(Id);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <h1 >Главная</h1>
+</header>
+    <nav th:insert="blocks/nav-menu :: nav"></nav>
+    <table th:insert="blocks/table-users :: table-users"></table>
+
+    <footer th:insert="blocks/footer :: footer">
+
+    </footer>
+</body>
+</html>

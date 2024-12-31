@@ -1,0 +1,26 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css">
+</head>
+<body>
+<header>
+    <h1 >Контакты</h1>
+</header>
+    <nav th:insert="blocks/nav-menu :: nav"></nav>
+
+    <main>
+        <div class="contact-info">
+            <h2>Наши контактные данные:</h2>
+            <p><strong>Адрес:</strong> ул. Название улицы, дом, город</p>
+            <p><strong>Телефон:</strong> +7 (XXX) XXX-XX-XX</p>
+            <p><strong>Email:</strong> example@example.com</p>
+        </div>
+    </main>
+    <footer th:insert="blocks/footer :: footer">
+
+    </footer>
+
+</body>
+</html>

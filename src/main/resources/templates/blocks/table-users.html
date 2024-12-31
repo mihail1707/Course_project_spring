@@ -1,0 +1,84 @@
+<div th:fragment="table-users">
+    <div class="container">
+    <!--    <h1>Электронная Регистратура Библиотеки</h1>-->
+    <h2>Таблица пользователей</h2>
+    <label for="lastname-filter">Фамилия:</label>
+    <input type="text" id="lastname-filter" oninput="filterTable()">
+
+    <label for="email-filter">Электронная почта:</label>
+    <input type="text" id="email-filter" oninput="filterTable()">
+    <!-- <button>поиск</button> -->
+
+    <table>
+        <thead>
+<!--        <tr th:onclick="window.location.href = window.location.href + 'contact'" >-->
+        <tr >
+            <th>№</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Электронная почта</th>
+            <th>Телефон</th>
+            <th>Дата регистрации</th>
+        </tr>
+        </thead>
+        <tbody id="user-list">
+<!--        <tr onclick="redirectTo('contact')">-->
+        <tr>
+            <td>1</td>
+            <td>Иван</td>
+            <td>Иванов</td>
+            <td>ivanov@example.com</td>
+            <td>1234567890</td>
+            <td>01.01.2023</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Мария</td>
+            <td>Петрова</td>
+            <td>petrova@example.com</td>
+            <td>0987654321</td>
+            <td>05.02.2023</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Алексей</td>
+            <td>Смирнов</td>
+            <td>smirnov@example.com</td>
+            <td>1122334455</td>
+            <td>10.03.2023</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+    <script>
+        function filterTable() {
+        const nameInput = document.getElementById('lastname-filter').value.toLowerCase(); // Получаем значение из поля имени
+        const surnameInput = document.getElementById('email-filter').value.toLowerCase(); // Получаем значение из поля фамилии
+        const userList = document.getElementById('user-list'); // Получаем тело таблицы
+        const rows = userList.getElementsByTagName('tr'); // Получаем все строки таблицы
+
+        // Проходим по всем строкам таблицы и скрываем/показываем их в зависимости от введенного текста
+        for (let i = 0; i < rows.length; i++) {
+            const cells = rows[i].getElementsByTagName('td'); // Получаем ячейки текущей строки
+
+            const userName = cells[0].textContent.toLowerCase(); // Имя
+            const userSurname = cells[2].textContent.toLowerCase(); // почта
+
+            // Проверяем, соответствует ли строка условиям фильтрации
+            const nameMatch = userName.indexOf(nameInput) > -1;
+            const surnameMatch = userSurname.indexOf(surnameInput) > -1;
+
+            // Показываем строку, если она соответствует обоим критериям
+            if (nameMatch && surnameMatch) {
+                rows[i].style.display = ""; // Показываем строку
+            } else {
+                rows[i].style.display = "none"; // Скрываем строку
+            }
+        }
+    }
+<!--     function redirectTo(link) {-->
+<!--     console.log(link)-->
+<!--        window.location.href = window.location.href + "contact";-->
+<!--    }-->
+    </script>
+</div>
